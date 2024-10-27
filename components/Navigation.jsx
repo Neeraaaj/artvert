@@ -1,55 +1,216 @@
-"use client"
-import Link from "next/link";
-import { usePathname } from 'next/navigation';
-import { useState } from "react";
-import { TbArrowUpRight } from "react-icons/tb";
+'use client'
 
-const nav = [
-    { href: '/', label: 'HOME' },
-    { href: '/projects', label: 'PROJECTS' },
-    { href: '/about', label: 'ABOUT US' },
-    { href: '/gallery', label: 'GALLERY' },
+import React, { useState } from "react";
+import styled from "styled-components";
+import Logos from '../app/images/Logo.png'
+import Image from "next/image";
 
-]
+const Nav = styled.nav`
+  width: 100vw;
+  border-radius: 100px;
+  padding: 10px;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 4px 8px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-export default function Navigation() {
-    const pathname = usePathname()
-    const [isOpen, setOpen] = useState(false)
+const Logo = styled.div`
+    width: 20vw;
+`;
+const Menu = styled.ul`
+  list-style: none;
+  display: flex;
+  gap: 15px;
 
-    return (
-        <>
-            <button className="block lg:hidden" onClick={() => setOpen(!isOpen)}>
-                <svg
-                    className={`fill-current h-3 w-3 ${isOpen ? "hidden" : "block"}`}
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                </svg>
-                <svg
-                    className={`fill-current h-3 w-3 ${isOpen ? "block" : "hidden"}`}
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
-                </svg>
-            </button>
+  li:nth-child(2]) {
+    margin: 0px 20px;
+  }
 
-            <nav className={`lg:flex gap-x-6 transform transition ${isOpen ? 'flex flex-col px-8 py-12 z-50  gap-y-6 absolute inset-y-0 bg-white right-0  translate-x-0 ' : 'hidden max-md:translate-x-full'}`}>
-                {nav.map(({ href, label }) => (
-                    <Link key={href} href={href} className={
-                        pathname === href ? 'text-black font-semibold' : ''
-                    }>
-                        {label}
-                    </Link>
-                ))}
-            </nav>
-            <div className={` ${isOpen ? 'fixed inset-0 z-30 bg-black bg-opacity-50' : 'hidden'} `} onClick={() => setOpen(false)}>
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
 
-            </div>
-            <Link href="/contact" className="items-center hidden px-5 py-2 font-medium text-gray-800 bg-white border border-gray-600 rounded-full shadow lg:inline-flex hover:bg-gray-100">
-                Contact Us <TbArrowUpRight className="w-5 h-5 ml-2" />
+const Item = styled.li``;
+
+const Link = styled.a`
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
+const NavIcon = styled.button`
+  background: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: black;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
+const Line = styled.span`
+  display: block;
+  border-radius: 50px;
+  width: 25px;
+  height: 3px;
+  margin: 5px;
+  background-color: black;
+  transition: width 0.4s ease-in-out;
+
+  :nth-child(2) {
+    width: ${props => (props.open ? "40%" : "70%")};
+  }
+`;
+
+const CloseButton = styled.button`
+  background: black;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 10vw;
+    margin: 4vw;
+    height: 1vh;
+    background-color: black;
+    transition: transform 0.3s ease;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+`;
+
+const Overlay = styled.div`
+  position: absolute;
+  height: ${props => (props.open ? "100vh" : 0)};
+  width: 100vw;
+  background: white;
+  border-radius: 50px;
+  transition: height 0.4s ease-in-out;
+  margin-top: 90vh;
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
+const OverlayMenu = styled.ul`
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+
+  li {
+    opacity: ${props => (props.open ? 1 : 0)};
+    font-size: 25px;
+    margin: 50px 0px;
+    transition: opacity 0.4s ease-in-out;
+    width: 50vw;
+    text-align: center;
+  }
+
+  li:nth-child(2) {
+    margin: 50px 0px;
+  }
+
+  li:hover {
+    background: black; 
+    border-radius: 100px;
+    a {
+      color: white; 
+    }
+  }
+`;
+
+const Navigation = () => {
+  const [toggle, toggleNav] = useState(false);
+
+  const handleClose = () => {
+    toggleNav(false);
+  };
+
+  return (
+    <>
+      <Nav>
+        <Logo>
+            <Image src={Logos} width={100} height={100} alt="" />
+        </Logo>
+        <Menu>
+          <Item>
+            <Link target="#" href="https://www.instagram.com/igor_dumencic/">
+              HOME
             </Link>
-        </>
-    )
-}
+          </Item>
+          <Item>
+            <Link target="#" href="https://www.behance.net/igordumencic">
+              PROJECTS
+            </Link>
+          </Item>
+          <Item>
+            <Link target="#" href="https://github.com/Igor178">
+              ABOUT
+            </Link>
+          </Item>
+          <Item>
+            <Link target="#" href="https://github.com/Igor178">
+              GALLERY
+            </Link>
+          </Item>
+        </Menu>
+        <NavIcon onClick={() => toggleNav(!toggle)}>
+          <Line open={toggle} />
+          <Line open={toggle} />
+          <Line open={toggle} />
+        </NavIcon>
+      </Nav>
+      <Overlay open={toggle}>
+        {toggle && <CloseButton onClick={handleClose} aria-label="Close menu" />}
+        <OverlayMenu open={toggle}>
+          <Item>
+            <Link target="#" href="https://www.instagram.com/igor_dumencic/">
+              HOME
+            </Link>
+          </Item>
+          <Item>
+            <Link target="#" href="https://www.behance.net/igordumencic">
+              PROJECTS
+            </Link>
+          </Item>
+          <Item>
+            <Link target="#" href="https://github.com/Igor178">
+              ABOUT
+            </Link>
+          </Item>
+          <Item>
+            <Link target="#" href="https://github.com/Igor178">
+              GALLERY
+            </Link>
+          </Item>
+        </OverlayMenu>
+      </Overlay>
+    </>
+  );
+};
+
+export default Navigation;

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <CompanySection />
+      {/* <CompanySection /> */}
       <AboutComponent />
       <CatalogueSection />
       <CatalogSwiperSection />
