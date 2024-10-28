@@ -168,12 +168,12 @@ const Navigation = () => {
             </Link>
           </Item>
           <Item>
-            <Link target="#" href="https://github.com/Igor178">
+            <Link href="/about">
               ABOUT
             </Link>
           </Item>
           <Item>
-            <Link target="#" href="https://github.com/Igor178">
+            <Link href="/gallery">
               GALLERY
             </Link>
           </Item>
