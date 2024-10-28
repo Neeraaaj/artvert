@@ -3,31 +3,25 @@ import { TbArrowUpRight } from "react-icons/tb"
 export default function About() {
     return (
         <div>
-            <div className="bg-[url('/image/about.jpg')] bg-center bg-cover ">
-                <h1 className="container py-32 text-6xl font-semibold tracking-widest text-center text-white lg:py-64 lg:text-left ">WHO ARE WE?</h1>
-
+            <div className="bg-[url('https://cdn.dribbble.com/users/730703/screenshots/11117662/media/1be27267eb26eda1aab42eed018a9658.jpg?resize=1000x750&vertical=center')] bg-center bg-cover bg-opacity-10 backdrop-blur-sm">
+                <h1 className="container py-32 text-6xl font-extrabold tracking-widest text-center text-white lg:py-64 lg:text-left">WHO ARE WE?</h1>
             </div>
             <div className="container ">
                 <div className="py-4 lg:py-14">
-                    <h2 className="p-4 text-3xl font-semibold text-center lg:p-20 lg:text-5xl">We have great idea & Interior Design</h2>
-                    <p className="text-2xl font-medium lg:w-1/2">
-                        The Digimax interior design company is a company that provides interior design services for homes, offices, apartments, and others. We provide the best interior design services for you. We have a team that is experienced in the field of interior.
+                    <h2 className="p-4 text-3xl font-semibold text-center lg:p-20 lg:text-5xl uppercase">Creative Concepts & <span className="text-green-400 font-extrabold">Mural Design</span> Solutions
+                    </h2>
+                    <p className="text-md max-w-xl  lg:w-1/2">
+                        ARTVERT is your go-to agency for unique mural designs that elevate any space. We collaborate with talented graffiti and street artists from across India to create captivating murals for homes, offices, and public areas. Our experienced team ensures that each project not only enhances the aesthetic of your space but also transforms it into a memorable landmark. Whether you want to make a bold statement or add subtle charm, we tailor our designs to reflect your vision and engage your audience.
                     </p>
                 </div>
                 <div className="items-center lg:flex gap-x-8">
-                    <div className="w-full">
-                        <Image src="/image/gallery1123.jpg" width={700} height={700} alt="" className="" />
+                    <div className="w-[120vw]">
+                        <Image src="https://cdn.dribbble.com/users/788099/screenshots/9917303/media/0f0139f4ccf40e8dc657db7edfc97ac6.png?resize=800x600&vertical=center" width={700} height={700} alt="" className="rounded-[50px]" />
                     </div>
                     <div className="">
                         <p className="pb-8 tracking-wide">
-                            We are an international Architects. We believe that today it is fundamental to totally rethink archi-tectural education. Confluence not only integrates new visions on society but also incorporates new methods and contemporary tools linked to creativity, production and communication. De-signed and handcrafted to hold and showcase my year two architecture portfolio, the unfolding box allows portfolio sheets…
+                            At ARTVERT, we are an international agency dedicated to revolutionizing the landscape of mural artistry. We believe it’s essential to rethink how art interacts with architecture and community. Our initiative, Confluence, integrates innovative perspectives on society while employing contemporary methods and tools that enhance creativity, production, and communication. Our handcrafted portfolio showcases our diverse projects, illustrating the power of murals to transform spaces and engage audiences in meaningful ways.
                             <br />
-                            <br />
-
-                            We are an international Architects. We believe that today it is fundamental to totally rethink archi-tectural education. Confluence not only integrates new visions on society but also incorporates new methods and contemporary tools linked to creativity, production and communication.
-                            <br />
-                            <br />
-                            <span className="text-xl font-extrabold tracking-tight">The backpiperARCH, we share a belief in the transformational power of people united in a common purpose.</span>
                         </p>
                         <a className="inline-flex items-center gap-1 px-6 py-3 text-sm text-white rounded-full shadow-lg bg-gray-950 hover:bg-gray-800 hover:ring-2 hover:ring-gray-950 ring-offset-2" href="">Read More <TbArrowUpRight className="text-xl" /> </a>
 
